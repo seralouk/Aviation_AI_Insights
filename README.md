@@ -6,7 +6,7 @@
 ### Setup Instructions
 
 Note: Run all steps from root directory (Aviation_AI_Insights/)
-### Step 1: Set up the virtual environment and install dependencies
+### Step 1: Set up your environment
 
 ```bash
 # Clone the repository
@@ -23,24 +23,28 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### Step 2: Load, process and build the vectorized knowledge base using some annual review docs as source.
+### Step 2: Load, process and build the vectorized knowledge base using IATA annual review docs as source.
 ```
 python ingest.py
 ```
 
-### Step 3: Run the main RAG Streamlit-based application.
+### Step 3: Launch the AI-powered RAG Virtual Consultant app
 ```
 streamlit run app.py
 ```
 
-## Project Structure
+## Project Structure 
 ```
-.
-├── app.py
-├── ingest.py
-├── rag_chain.py
-├── prompt.py
-├── requirements.txt
+Aviation_AI_Insights/
+├── chroma_db/              # Vector store created by the ingestion script, not pushed to git
+├── data/                   # Source PDFs or aviation reports
+├── .gitignore
+├── app.py                  # Streamlit UI app entry point
+├── ingest.py               # Loads, chunks and vectorizes documents
+├── prompt.py               # Prompt engineering utilities
+├── rag_chain.py            # LangChain RAG pipeline logic
+├── utils.py                # Helper functions
+├── requirements.txt        # Python dependencies
 ├── README.md
-└── venv/
+└── venv/                   # Virtual environment directory, not pushed to git
 ``

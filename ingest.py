@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Define constant path for knowledge base
+# Constant path for knowledge base
 DATA_DIR = os.path.join(os.getcwd(), 'data')
 
 def ingest_docs():

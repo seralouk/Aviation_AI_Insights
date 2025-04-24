@@ -1,4 +1,7 @@
 import streamlit as st
+import os
+
+DATA_DIR = os.path.join(os.getcwd(), "data")
 
 def get_relevance_level(score):
     """

@@ -23,6 +23,7 @@ def ingest_docs():
     # Only process PDF files
     documents = []
     for file in [f for f in os.listdir(DATA_DIR) if f.endswith(".pdf")]:
+        print(f"\n Reading and ingesting knowledge base file: {file}")
         loader = PyPDFLoader(os.path.join(DATA_DIR, file))
         documents.extend(loader.load())
 
@@ -33,9 +34,9 @@ def ingest_docs():
     # Embed chunks
     embeddings = OpenAIEmbeddings()
     vectorstore = Chroma.from_documents(splits, embedding=embeddings, persist_directory="chroma_db")
-    vectorstore.persist() # save to local disk for later usage by the rag app
+    #vectorstore.persist() # save to local disk for later usage by the rag app
 
-    print("\n \n Ingestion done. Documents successfully ingested, chunked and vectorized.\n \n ")
+    print("\n Ingestion done. Documents successfully ingested, chunked and vectorized.\n")
 
 if __name__ == "__main__":
     ingest_docs()

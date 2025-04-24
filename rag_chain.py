@@ -1,7 +1,7 @@
-from langchain_community.embeddings import OpenAIEmbeddings
-from langchain_community.vectorstores import Chroma
+from langchain_openai import OpenAIEmbeddings
+from langchain_chroma import Chroma
 from langchain.chains import RetrievalQA
-from langchain_community.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
 from prompt import prompt_template
 
@@ -12,7 +12,7 @@ def build_rag_chain():
     Builds a RAG QA chain using our preconstructed vectorDB.
 
     Returns:
-        RetrievalQA: A LangChain RAG chain ready for use in question answering over embedded documents.
+        tuple: (RetrievalQA chain, Chroma vectorstore)
     """
     # Build a retriever of the top 3 most relevant chunks
     vectorstore = Chroma(persist_directory="chroma_db", embedding_function=OpenAIEmbeddings())
@@ -24,4 +24,4 @@ def build_rag_chain():
                                            return_source_documents=True,
                                            chain_type="stuff",
                                            chain_type_kwargs={"prompt": prompt_template})
-    return qa_chain
+    return qa_chain, vectorstore

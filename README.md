@@ -1,10 +1,11 @@
 # Aviation_AI_Insights
-Implementation of an AI-powered Aviation Industry Advisor
+## Implementation of an AI-powered Aviation Industry Advisor
 
 ---
 
-## Setup Instructions
+### Setup Instructions
 
+Note: Run all steps from root directory (Aviation_AI_Insights/)
 ### Step 1: Set up the virtual environment and install dependencies
 
 ```bash

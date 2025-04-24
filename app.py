@@ -32,6 +32,7 @@ if query:
         "Answer": llm_completion["result"],
         "Sources": ", ".join(sources)
     })
+    #st.write("Session state history:", st.session_state.qa_history) # debug 
 
     st.markdown("---")
     st.markdown("### Relevant Knowledge Base Extracts Used for Answering")
@@ -63,3 +64,22 @@ if st.session_state.qa_history:
         mime="text/csv"
     )
 
+# if st.session_state.qa_history:
+#     # Build the text content
+#     txt_lines = []
+#     for entry in st.session_state.qa_history:
+#         txt_lines.append(f"Q: {entry['Question']}")
+#         txt_lines.append(f"A: {entry['Answer']}")
+#         txt_lines.append(f"Sources: {entry['Sources']}")
+#         txt_lines.append("-" * 40)  # separator between entries
+
+#     full_txt = "\n".join(txt_lines)
+
+#     st.markdown("---")
+#     st.markdown("### Download Q&A History")
+#     st.download_button(
+#         label="Download QA History as TXT",
+#         data=full_txt.encode("utf-8"),
+#         file_name="aviation_qa_history.txt",
+#         mime="text/plain"
+#     )

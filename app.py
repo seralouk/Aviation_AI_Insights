@@ -19,7 +19,7 @@ if query:
     rag_chain = build_rag_chain()
     llm_completion = rag_chain(query)
 
-    st.markdown("### Answer (**AI-generated**):")
+    st.markdown("### Answer (**AI-generated, use with care**):")
     st.write(llm_completion["result"])
 
     # Store Q&A and sources
@@ -45,9 +45,10 @@ if query:
 
         # reformat chunks before displaying in the streamlit app
         subtitle = f"🟢 Top {i+1} Retrieved Knowledge Base Extract (first 500 characters)"
-        st.markdown(f"**{subtitle}**: Source document: *{source.split('/')[-1]}, page {page+1}*")
-        formatted_text = text_preview.replace('\n', '  ')
-        st.markdown(f"> *{formatted_text}* ")
+        st.markdown(f"**{subtitle}** (Source document: *{source.split('/')[-1]}, page {page+1}*)")
+        formatted_text = text_preview.replace('\n', ' ').strip()
+        styled_text = f"<p style='font-style: italic; border-left: 4px solid #ccc; padding-left: 10px;'>«{formatted_text}»</p>"
+        st.markdown(styled_text, unsafe_allow_html=True)
 
 
 # Download button for Q&A history

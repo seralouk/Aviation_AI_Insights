@@ -44,5 +44,20 @@ def display_chunk(i, doc, raw_score):
 
     st.markdown(f"**{subtitle}** — *Source: {source.split('/')[-1]}, page {page_display}*")
     st.markdown(f"**Relevance Score:** {cosine_score:.3f} (higher score = more relevant)")
-    st.progress(cosine_score)
+    # cosine similarity value as colored bar for better UX
+    bar_html = f"""
+    <div style="background: linear-gradient(to right, red 0%, orange 25%, yellow 50%, lightgreen 75%, green 100%);
+                border-radius: 5px; height: 20px; width: 100%;">
+    <div style="background-color: rgba(0, 0, 0, 0); height: 100%;
+                width: {cosine_score * 100:.1f}%;
+                border-radius: 5px;
+                border: 2px solid black;">
+    </div>
+    </div>
+    <div style="display: flex; justify-content: space-between; font-size: 12px;">
+    <span>0 (Low)</span>
+    <span>1 (High)</span>
+    </div>
+    """
+    st.markdown(bar_html, unsafe_allow_html=True)
     st.markdown(styled_text, unsafe_allow_html=True)

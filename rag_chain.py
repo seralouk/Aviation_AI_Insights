@@ -16,7 +16,7 @@ def build_rag_chain():
     """
     # Build a retriever of the top 3 most relevant chunks
     vectorstore = Chroma(persist_directory="chroma_db", embedding_function=OpenAIEmbeddings())
-    retriever = vectorstore.as_retriever(search_kwargs={"k": 5})
+    retriever = vectorstore.as_retriever(search_kwargs={"k": 10})
 
     llm = ChatOpenAI(model_name="gpt-4", temperature=0) # we want to minimize hallucinations so temp=0
     qa_chain = RetrievalQA.from_chain_type(llm=llm,

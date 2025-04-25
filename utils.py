@@ -36,7 +36,7 @@ def display_chunk(i, doc, raw_score):
 
     source = doc.metadata.get("source", "Unknown file")
     page = doc.metadata.get("page", "N/A")
-    page_display = page + 1 if isinstance(page, int) else page
+    page_display = page + 1
 
     subtitle = f"{level} (Top {i+1}) Retrieved Chunk (first 500 characters)"
     formatted_text = doc.page_content[:500].replace('\n', ' ').strip()

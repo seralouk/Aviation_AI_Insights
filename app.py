@@ -50,7 +50,7 @@ if query:
         # Retrieve and sort similarity chunks for context display
         docs_with_scores = vectorstore.similarity_search_with_score(query, k=5)
         docs_with_scores = sorted(docs_with_scores, key=lambda x: x[1])
-        st.session_state.last_chunks = docs_with_scores[:3]
+        st.session_state.last_chunks = docs_with_scores[:2]
 
         # # Show top 3 chunks inside expander
         # with st.expander("Show Retrieved Chunks"):
@@ -70,7 +70,7 @@ if query:
 
 # Show retrieved chunks if available
 if st.session_state.last_chunks:
-    with st.expander("Show Retrieved Chunks"):
+    with st.expander("Show Top Retrieved Chunks"):
         for i, (doc, score) in enumerate(st.session_state.last_chunks):
             display_chunk(i, doc, score)
         

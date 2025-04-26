@@ -36,13 +36,12 @@ def display_chunk(i, doc, raw_score):
 
     source = doc.metadata.get("source", "Unknown file")
     page = doc.metadata.get("page", "N/A")
-    page_display = page + 1
 
     subtitle = f"{level} (Top {i+1}) Retrieved Chunk (first 500 characters)"
     formatted_text = doc.page_content[:500].replace('\n', ' ').strip()
     styled_text = f"<p style='font-style: italic; border-left: 4px solid #ccc; padding-left: 10px;'>«{formatted_text}»</p>"
 
-    st.markdown(f"**{subtitle}** — *Source: {source.split('/')[-1]}, page {page_display}*")
+    st.markdown(f"**{subtitle}** — *Source: {source.split('/')[-1]}, page {page + 1}*")
     st.markdown(f"**Relevance Score:** {cosine_score:.3f} (higher score = more relevant)")
     # cosine similarity value as colored bar for better UX
     bar_html = f"""

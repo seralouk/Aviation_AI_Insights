@@ -37,10 +37,9 @@ if query:
     with st.chat_message("user"):
         st.markdown(query)
     
-    # Build RAG chain and get response
+    # Build RAG chain and get LLM completion on input query
     rag_chain, vectorstore = build_rag_chain()
     llm_completion = rag_chain(query)
-
     response = llm_completion["result"]
 
     # Show assistant response

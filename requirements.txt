@@ -1,6 +1,7 @@
-langchain-openai
-langchain_chroma
-streamlit
-RAGchain
-dotenv
-pypdf
+langchain_openai==0.1.25
+langchain_chroma==0.2.2
+langchain-community==0.2.19
+streamlit==1.44.1
+dotenv==0.9.9
+pypdf==5.4.0
+faiss-cpu==1.10.0

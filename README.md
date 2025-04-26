@@ -36,15 +36,15 @@ streamlit run app.py
 ## Project Structure 
 ```
 Aviation_AI_Insights/
-├── chroma_db/              # Vector store created by the ingestion script, not pushed to git
-├── data/                   # Source PDFs or aviation reports
+├── faiss_db/               # VectorDB created by the ingestion script, not pushed to git
+├── data/                   # Source PDFs (annual review)
 ├── .gitignore
-├── app.py                  # Streamlit UI app entry point
+├── app.py                  # Streamlit UI main app (entry point)
 ├── ingest.py               # Loads, chunks and vectorizes documents
 ├── prompt.py               # Prompt engineering utilities
 ├── rag_chain.py            # LangChain RAG pipeline logic
 ├── utils.py                # Helper functions
-├── requirements.txt        # Python dependencies
+├── requirements.txt        # Module dependencies to be installed for venv
 ├── README.md
-└── venv/                   # Virtual environment directory, not pushed to git
+└── venv/                   # Virtual env directory, not pushed to git
 ``

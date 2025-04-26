@@ -1,5 +1,6 @@
 from langchain_openai import OpenAIEmbeddings
-from langchain_chroma import Chroma
+#from langchain_chroma import Chroma
+from langchain_community.vectorstores import FAISS
 from langchain.chains import RetrievalQA
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
@@ -14,8 +15,9 @@ def build_rag_chain():
     Returns:
         tuple: (RetrievalQA chain, Chroma vectorstore)
     """
-    # Build a retriever of the top 3 most relevant chunks
-    vectorstore = Chroma(persist_directory="chroma_db", embedding_function=OpenAIEmbeddings())
+    # Build a retriever of the top 5 most relevant chunks
+    #vectorstore = Chroma(persist_directory="chroma_db", embedding_function=OpenAIEmbeddings())
+    vectorstore = FAISS.load_local(folder_path="faiss_db", embeddings=OpenAIEmbeddings(), allow_dangerous_deserialization=True)
     retriever = vectorstore.as_retriever(search_kwargs={"k": 5})
 
     llm = ChatOpenAI(model_name="gpt-4", temperature=0) # we want to minimize hallucinations so temp=0

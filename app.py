@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from rag_chain import build_rag_chain
-from utils import get_relevance_level, display_chunk
+from utils import display_chunk
 
 # --- Config ---
 # Setup landing page of streamlit app

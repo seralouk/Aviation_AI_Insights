@@ -40,6 +40,7 @@ def ingest_KB():
         # Chunk splitting
         text_splitter = RecursiveCharacterTextSplitter(chunk_size=CHUNK_SIZE, chunk_overlap=CHUNK_OVERLAP)
         splits = text_splitter.split_documents(documents)
+        splits = [split for split in splits if len(split.page_content.strip()) > 150]
 
         # Embed chunks, build vectorstore and save it locally
         vectorstore = FAISS.from_documents(splits, embedding=OpenAIEmbeddings())

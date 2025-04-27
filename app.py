@@ -3,14 +3,13 @@ import pandas as pd
 from rag_chain import build_rag_chain
 from utils import display_chunk
 
-# --- Config ---
-# Setup landing page of streamlit app
+
+# Config: Setup landing page of streamlit app
 st.set_page_config(page_title="Aviation Industry Insights")
 st.title("Aviation Industry Insights - Virtual Consultant")
 st.markdown("### Your Aviation Industry Trusted AI Advisor!")
 st.markdown("Note: AI-generated content may not always be accurate. Please cross-verify with reliable sources.")
 
-# --- Session state init ---
 # Initialize session states
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
@@ -19,17 +18,17 @@ if "qa_history" not in st.session_state:
 if "last_chunks" not in st.session_state:
     st.session_state.last_chunks = []
 
-# --- Display past messages ---
+# Display chat past messages if exist
 for msg in st.session_state.chat_history:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
-# --- RAG query input ---
-# Starting query of the RAG system
+# RAG query input: Starting query of system
 query = st.chat_input("What would you like to know about the aviation industry? ")
 
+# Capture user inputs
 if query:
-    # Clear old chunks from session state
+    # Clear old chunks
     st.session_state.last_chunks = []
 
     # Show user message
@@ -57,7 +56,7 @@ if query:
         #     for i, (doc, score) in enumerate(docs_with_scores[:3]):
         #         display_chunk(i, doc, score)
 
-    # Save this exchange to CSV download history
+    # Save chat exchange to CSV download history
     sources = [
         f"{doc.metadata.get('source', 'Unknown')} (page {doc.metadata.get('page', 'N/A') + 1})"
         for doc in llm_completion["source_documents"]
@@ -68,7 +67,7 @@ if query:
         "Sources": ", ".join(sources)
     })
 
-# Show retrieved chunks if available
+# Show retrieved chunks
 if st.session_state.last_chunks:
     with st.expander("Show Top Retrieved Chunks"):
         for i, (doc, score) in enumerate(st.session_state.last_chunks):

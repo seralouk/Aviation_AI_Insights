@@ -3,9 +3,10 @@ import os
 
 DATA_DIR = os.path.join(os.getcwd(), "data")
 
+
 def get_relevance_level(score):
     """
-    Determine the relevance level based on the score and return a colored title.
+    Determine the relevance level based on the cosine similarity and return a colored title.
     Inputs:
         score (float): The cosine similarity score
     Returns:
@@ -34,6 +35,7 @@ def display_chunk(i, doc, raw_score):
     cosine_score = 1.0 - raw_score
     level = get_relevance_level(cosine_score)
 
+    # Get source and page from metadata
     source = doc.metadata.get("source", "Unknown file")
     page = doc.metadata.get("page", "N/A")
 
@@ -43,7 +45,8 @@ def display_chunk(i, doc, raw_score):
 
     st.markdown(f"**{subtitle}** — *Source: {source.split('/')[-1]}, page {page + 1}*")
     st.markdown(f"**Relevance Score:** {cosine_score:.3f} (higher score = more relevant)")
-    # cosine similarity value as colored bar for better UX
+    
+    # cosine similarity value as colored bar for maximum UX
     bar_html = f"""
     <div style="background: linear-gradient(to right, red 0%, orange 25%, yellow 50%, lightgreen 75%, green 100%);
                 border-radius: 5px; height: 20px; width: 100%;">

@@ -1,5 +1,6 @@
 from langchain.prompts import PromptTemplate
 
+# Prompt template for the RAG app
 prompt_template = PromptTemplate(
     input_variables=["context", "question"],
     template="""

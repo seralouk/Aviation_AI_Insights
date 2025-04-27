@@ -11,6 +11,9 @@ load_dotenv()
 # Path to knowledge base documents
 DATA_DIR = os.path.join(os.getcwd(), 'data')
 
+# Chuck size and overlap constants
+CHUNK_SIZE=500
+CHUNK_OVERLAP=100
 
 def ingest_KB():
     """
@@ -35,7 +38,7 @@ def ingest_KB():
             documents.extend(loader.load())
 
         # Chunk splitting
-        text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
+        text_splitter = RecursiveCharacterTextSplitter(chunk_size=CHUNK_SIZE, chunk_overlap=CHUNK_OVERLAP)
         splits = text_splitter.split_documents(documents)
 
         # Embed chunks, build vectorstore and save it locally

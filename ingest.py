@@ -11,6 +11,9 @@ load_dotenv()
 # Path to knowledge base documents
 DATA_DIR = os.path.join(os.getcwd(), 'data')
 
+# Chuck size and overlap constants
+CHUNK_SIZE=500
+CHUNK_OVERLAP=100
 
 def ingest_KB():
     """
@@ -32,10 +35,15 @@ def ingest_KB():
         for file in pdf_files:
             print(f"\n Reading and ingesting knowledge base file: {file}")
             loader = PyPDFLoader(os.path.join(DATA_DIR, file))
-            documents.extend(loader.load())
+            #documents.extend(loader.load())
+            pages = loader.load()
+            # Filter pages with content less than 150 characters
+            for page in pages:
+                clean_text = page.page_content.strip()
+                if len(clean_text) > 150: documents.append(page)
 
         # Chunk splitting
-        text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
+        text_splitter = RecursiveCharacterTextSplitter(chunk_size=CHUNK_SIZE, chunk_overlap=CHUNK_OVERLAP)
         splits = text_splitter.split_documents(documents)
 
         # Embed chunks, build vectorstore and save it locally

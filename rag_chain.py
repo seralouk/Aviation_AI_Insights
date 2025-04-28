@@ -3,7 +3,7 @@ from langchain_community.vectorstores import FAISS
 from langchain.chains import RetrievalQA
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
-from prompt import prompt_template
+from prompt import prompt_template, prompt_template_CoT
 
 # Load API key
 load_dotenv()
@@ -26,5 +26,5 @@ def build_rag_chain():
                                            retriever=retriever,
                                            return_source_documents=True,
                                            chain_type="stuff",
-                                           chain_type_kwargs={"prompt": prompt_template})
+                                           chain_type_kwargs={"prompt": prompt_template_CoT})
     return qa_chain, vectorstore

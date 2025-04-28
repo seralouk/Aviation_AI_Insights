@@ -19,7 +19,7 @@ python -m venv venv
 # Activate the venv
 source venv/bin/activate
 
-# Install required packages for the RAG app
+# Install dependencies
 pip install -r requirements.txt
 ```
 

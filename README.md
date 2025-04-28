@@ -36,9 +36,9 @@ streamlit run app.py
 ## Project Structure 
 ```
 Aviation_AI_Insights/
-├── faiss_db/                      # VectorDB created by the ingestion script (local)
-├── data/                          # Source PDFs (IATA annual reviews)
-├── agents/                        # Specialized agents
+├── faiss_db/                       # VectorDB created by the ingestion script (local)
+├── data/                           # Source PDFs (IATA annual reviews)
+├── agents/                         # Specialized agents
 │   ├── router_agent.py             # Determines if query is general or specific
 │   ├── retriever_agent.py          # Retrieves relevant documents
 │   ├── general_insights_agent.py   # Handles broad strategic overviews
@@ -50,6 +50,6 @@ Aviation_AI_Insights/
 ├── graph_builder.py                # Builds the LangGraph multi-agent workflow
 ├── utils.py                        # Helper functions (LLM loader, vectorstore loader, etc.)
 ├── requirements.txt                # Python dependencies
-├── README.md                        # Project documentation
+├── README.md                       # Project documentation
 └── venv/                           # Virtual environment folder (excluded from git)
 ``

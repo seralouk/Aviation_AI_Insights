@@ -6,6 +6,7 @@ from agents.specialized_topic_agent import specific_answer_agent
 from agents.presentation import presentation_agent
 from typing import TypedDict, List, Optional
 
+
 class AviationState(TypedDict):
     query: str
     retrieved_docs: List
@@ -13,6 +14,7 @@ class AviationState(TypedDict):
     route_decision: str
     final_summary: Optional[str]
     final_answer: Optional[str]
+
 
 def build_multi_agent_graph():
     """

@@ -28,7 +28,7 @@ pip install -r requirements.txt
 python ingest.py
 ```
 
-### Step 3: Launch the AI-powered RAG Virtual Consultant app
+### Step 3: Launch the AI-powered Multi-Agent RAG Solution
 ```
 streamlit run app.py
 ```
@@ -36,15 +36,20 @@ streamlit run app.py
 ## Project Structure 
 ```
 Aviation_AI_Insights/
-├── faiss_db/               # VectorDB created by the ingestion script, not pushed to git
-├── data/                   # Source PDFs (annual review)
-├── .gitignore
-├── app.py                  # Streamlit UI main app (entry point)
-├── ingest.py               # Loads, chunks and vectorizes documents
-├── prompt.py               # Prompt engineering utilities
-├── rag_chain.py            # LangChain RAG pipeline logic
-├── utils.py                # Helper functions
-├── requirements.txt        # Module dependencies to be installed for venv
-├── README.md
-└── venv/                   # Virtual env directory, not pushed to git
+├── faiss_db/                      # VectorDB created by the ingestion script (local)
+├── data/                          # Source PDFs (IATA annual reviews)
+├── agents/                        # Specialized agents
+│   ├── router_agent.py             # Determines if query is general or specific
+│   ├── retriever_agent.py          # Retrieves relevant documents
+│   ├── general_insights_agent.py   # Handles broad strategic overviews
+│   ├── specific_answer_agent.py    # Handles focused specific answers
+│   ├── presentation_agent.py       # Formats final strategic report
+├── .gitignore                      # Specifies files and folders to exclude from version control
+├── app.py                          # Streamlit UI main app (entry point)
+├── ingest.py                       # Loads, chunks and vectorizes documents
+├── graph_builder.py                # Builds the LangGraph multi-agent workflow
+├── utils.py                        # Helper functions (LLM loader, vectorstore loader, etc.)
+├── requirements.txt                # Python dependencies
+├── README.md                        # Project documentation
+└── venv/                           # Virtual environment folder (excluded from git)
 ``

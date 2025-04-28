@@ -35,12 +35,15 @@ def ingest_KB():
         for file in pdf_files:
             print(f"\n Reading and ingesting knowledge base file: {file}")
             loader = PyPDFLoader(os.path.join(DATA_DIR, file))
-            documents.extend(loader.load())
+            pages = loader.load()
+            # Filter pages with content less than 150 characters
+            for page in pages:
+                clean_text = page.page_content.strip()
+                if len(clean_text) > 150: documents.append(page)
 
         # Chunk splitting
         text_splitter = RecursiveCharacterTextSplitter(chunk_size=CHUNK_SIZE, chunk_overlap=CHUNK_OVERLAP)
         splits = text_splitter.split_documents(documents)
-        splits = [split for split in splits if len(split.page_content.strip()) > 150]
 
         # Embed chunks, build vectorstore and save it locally
         vectorstore = FAISS.from_documents(splits, embedding=OpenAIEmbeddings())

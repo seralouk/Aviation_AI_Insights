@@ -43,6 +43,7 @@ if query:
     lang_graph = build_multi_agent_graph()
     lang_graph.get_graph().print_ascii()
     result = lang_graph.invoke({"query": query})
+    print(result['route_decision']) # for debugging and testing
     response = result["final_answer"]
 
     # Show assistant response

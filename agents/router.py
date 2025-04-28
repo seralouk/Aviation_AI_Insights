@@ -24,5 +24,6 @@ Return one of these Python strings:
 - "general_insights"
 - "specific_answer"
 """
+    # LLM as a judge
     route_decision = llm.predict(prompt).strip().replace('"', '').replace("'", '')
     return {"route_decision": route_decision}

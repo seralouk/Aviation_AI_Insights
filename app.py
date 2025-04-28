@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from graph_builder import build_multi_agent_graph
-from utils import display_chunk
+from utils import display_chunk, get_vectorstore
 
 
 # Config: Setup landing page of streamlit app
@@ -26,6 +26,9 @@ for msg in st.session_state.chat_history:
 # RAG query input: Starting query of system
 query = st.chat_input("What would you like to know about the aviation industry? ")
 
+# Load vectorstore
+vectorstore = get_vectorstore()
+
 # Capture user inputs
 if query:
     # Clear old chunks
@@ -37,10 +40,10 @@ if query:
         st.markdown(query)
     
     # Build RAG chain and get LLM completion on input query
-    multi_agent_graph = build_multi_agent_chain()
-    result = multi_agent_graph.invoke({"query": query})
+    lang_graph = build_multi_agent_graph()
+    lang_graph.get_graph().print_ascii()
+    result = lang_graph.invoke({"query": query})
     response = result["final_answer"]
-
 
     # Show assistant response
     st.session_state.chat_history.append({"role": "assistant", "content": response})
@@ -48,9 +51,11 @@ if query:
         st.markdown(response)
 
         # Retrieve and sort similarity chunks for context display
-        docs_with_scores = vectorstore.similarity_search_with_score(query, k=5)
-        docs_with_scores = sorted(docs_with_scores, key=lambda x: x[1])
-        st.session_state.last_chunks = docs_with_scores[:3]
+        retrieved_docs = result.get("retrieved_docs", [])
+        retrieved_scores = result.get("retrieved_scores", [])
+
+        # Pair documents and scores
+        st.session_state.last_chunks = list(zip(retrieved_docs[:3], retrieved_scores[:3]))
 
         # # Show top 3 chunks inside expander
         # with st.expander("Show Retrieved Chunks"):
@@ -59,8 +64,8 @@ if query:
 
     # Save chat exchange to CSV download history
     sources = [
-        f"{doc.metadata.get('source', 'Unknown')} (page {doc.metadata.get('page', 'N/A') + 1})"
-        for doc in llm_completion["source_documents"]
+        f"{doc.metadata.get('source', 'Unknown')} (page {doc.metadata.get('page', 'N/A')}), Score: {1.0 - score:.3f}"
+        for doc, score in st.session_state.last_chunks
     ]
     st.session_state.qa_history.append({
         "Question": query,

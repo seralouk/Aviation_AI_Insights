@@ -2,20 +2,22 @@ import streamlit as st
 import os
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_community.vectorstores import FAISS
+from dotenv import load_dotenv
 
-DATA_DIR = os.path.join(os.getcwd(), "data")
+# Load .env OpenAI API key for embeddings
+load_dotenv()
 
 
 def get_llm():
     """
-    Loads and returns the base LLM
+    Loads and returns the base LLM.
     """
     return ChatOpenAI(model_name="gpt-4", temperature=0)
 
 
 def get_vectorstore():
     """
-    Loads and return the FAISS vectorstore from the local directory.
+    Loads the locally saved FAISS vectorstore.
     """
     return FAISS.load_local(folder_path="faiss_db", embeddings=OpenAIEmbeddings(), allow_dangerous_deserialization=True)
 

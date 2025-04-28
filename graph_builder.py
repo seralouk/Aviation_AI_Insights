@@ -1,31 +1,45 @@
 from langgraph.graph import StateGraph
 from agents.router import router_agent
 from agents.retriever import retriever_agent
-from agents.trend_analyzer import trend_analyzer_agent
-from agents.regulatory_sme import regulatory_expert_agent
-from agents.opportunity_identifier import opportunity_identifier_agent
-from agents.summarization import summarization_agent
+from agents.general_insights_agent import general_insights_agent
+from agents.specialized_topic_agent import specific_answer_agent
 from agents.presentation import presentation_agent
+from typing import TypedDict, List, Optional
+
+class AviationState(TypedDict):
+    query: str
+    retrieved_docs: List
+    retrieved_scores: List
+    route_decision: str
+    final_summary: Optional[str]
+    final_answer: Optional[str]
 
 def build_multi_agent_graph():
-    graph = StateGraph()
-    # Agents as nodes
+    """
+    Build a simple multi-agent graph: router, retriever, general/specific agents, presenter.
+    """
+    graph = StateGraph(AviationState)
+
+    # Nodes
     graph.add_node("router", router_agent)
     graph.add_node("retriever", retriever_agent)
-    graph.add_node("trend", trend_analyzer_agent)
-    graph.add_node("regulation", regulatory_expert_agent)
-    graph.add_node("opportunity", opportunity_identifier_agent)
-    graph.add_node("summarizer", summarization_agent)
+    graph.add_node("general_insights", general_insights_agent)
+    graph.add_node("specific_answer", specific_answer_agent)
     graph.add_node("presenter", presentation_agent)
     graph.set_entry_point("router")
-    # Edges between agents
+
+    # Edges
     graph.add_edge("router", "retriever")
-    graph.add_edge("retriever", "trend")
-    graph.add_edge("retriever", "regulation")
-    graph.add_edge("retriever", "opportunity")
-    graph.add_edge("trend", "summarizer")
-    graph.add_edge("regulation", "summarizer")
-    graph.add_edge("opportunity", "summarizer")
-    graph.add_edge("summarizer", "presenter")
-    
+
+    # Based on router decision select agent
+    graph.add_conditional_edges(source="retriever",
+                                path=lambda x: x["route_decision"],
+                                path_map={
+                                    "general_insights": "general_insights",
+                                    "specific_answer": "specific_answer"})
+
+    # Pass to presenter in all cases
+    graph.add_edge("general_insights", "presenter")
+    graph.add_edge("specific_answer", "presenter")
+
     return graph.compile()

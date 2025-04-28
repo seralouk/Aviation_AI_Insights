@@ -1,3 +1,4 @@
+pydantic==2.11.3
 langchain_openai==0.1.25
 langchain_chroma==0.2.2
 langchain-community==0.2.19

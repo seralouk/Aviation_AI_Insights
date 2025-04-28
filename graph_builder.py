@@ -9,6 +9,7 @@ from agents.presentation import presentation_agent
 
 def build_multi_agent_graph():
     graph = StateGraph()
+    # Agents as nodes
     graph.add_node("router", router_agent)
     graph.add_node("retriever", retriever_agent)
     graph.add_node("trend", trend_analyzer_agent)
@@ -17,6 +18,7 @@ def build_multi_agent_graph():
     graph.add_node("summarizer", summarization_agent)
     graph.add_node("presenter", presentation_agent)
     graph.set_entry_point("router")
+    # Edges between agents
     graph.add_edge("router", "retriever")
     graph.add_edge("retriever", "trend")
     graph.add_edge("retriever", "regulation")
@@ -25,4 +27,5 @@ def build_multi_agent_graph():
     graph.add_edge("regulation", "summarizer")
     graph.add_edge("opportunity", "summarizer")
     graph.add_edge("summarizer", "presenter")
+    
     return graph.compile()

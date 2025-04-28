@@ -17,12 +17,13 @@ def general_insights_agent(state):
     
     prompt = f"""You are working as an experienced Data Science Consultant for an entrepreneur who is exploring investment opportunities in the aviation industry.
 
-The entrepreneur has **limited knowledge of the aviation industry**.  
-Your task is to analyze the provided context and deliver a **structured, professional response** that:
-- Explains the **evolution of the aviation industry** across key thematic areas
-- Offers **investment-relevant recommendations** tailored to the entrepreneur
+The entrepreneur has limited knowledge of the aviation industry.  
+Your task is to analyze the provided context and deliver a structured, professional response that:
+- Explains the evolution of the aviation industry across key thematic areas
+- Offers investment-relevant recommendations tailored to the entrepreneur
 
 **Focus your analysis and suggestions under these key thematic areas** (only include those that apply):
+
 - Economics
 - Regulations
 - Environment & Sustainability

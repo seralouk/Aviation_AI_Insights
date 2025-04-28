@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from rag_chain import build_rag_chain
+from graph_builder import build_multi_agent_graph
 from utils import display_chunk
 
 
@@ -37,9 +37,10 @@ if query:
         st.markdown(query)
     
     # Build RAG chain and get LLM completion on input query
-    rag_chain, vectorstore = build_rag_chain()
-    llm_completion = rag_chain(query)
-    response = llm_completion["result"]
+    multi_agent_graph = build_multi_agent_chain()
+    result = multi_agent_graph.invoke({"query": query})
+    response = result["final_answer"]
+
 
     # Show assistant response
     st.session_state.chat_history.append({"role": "assistant", "content": response})

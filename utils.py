@@ -1,7 +1,23 @@
 import streamlit as st
 import os
+from langchain_openai import OpenAIEmbeddings, ChatOpenAI
+from langchain_community.vectorstores import FAISS
 
 DATA_DIR = os.path.join(os.getcwd(), "data")
+
+
+def get_llm():
+    """
+    Loads and returns the base LLM
+    """
+    return ChatOpenAI(model_name="gpt-4", temperature=0)
+
+
+def get_vectorstore():
+    """
+    Loads and return the FAISS vectorstore from the local directory.
+    """
+    return FAISS.load_local(folder_path="faiss_db", embeddings=OpenAIEmbeddings(), allow_dangerous_deserialization=True)
 
 
 def get_relevance_level(score):

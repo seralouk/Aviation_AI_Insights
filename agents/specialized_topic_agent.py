@@ -19,8 +19,8 @@ def specific_answer_agent(state):
 
 The entrepreneur has **limited knowledge of the aviation industry**.  
 Your task is to analyze the provided context and deliver a **structured, professional response** that:
-- Explains the **evolution of the aviation industry** across key thematic areas
-- Offers **investment-relevant recommendations** tailored to the entrepreneur
+- Explains the evolution of the aviation industry across key thematic areas
+- Offers investment-relevant recommendations tailored to the entrepreneur
 
 **Focus the insights and recommendations mainly on the topic asked, but still structure under the standard categories if applicable.**
 
@@ -34,11 +34,11 @@ Your task is to analyze the provided context and deliver a **structured, profess
 - Financial Services
 
 **Instructions:**
-- Use **bullet points** (not numbered lists) grouped under each relevant category.
-- After the insights, create a clear **"Investment Recommendations"** section listing 3–5 actionable investment ideas.
-- **Keep the tone professional, concise, and investor-friendly** — as if writing a strategic briefing to a non-expert.
-- **Avoid technical jargon, abbreviations, or acronyms**. Always spell terms fully (e.g., say "Sustainable Aviation Fuel" instead of "SAF").
-- **If the information is insufficient**, state it clearly and suggest logical next steps or areas for further research.
+- Use bullet points (not numbered lists) grouped under each relevant category.
+- After the insights, create a clear "Investment Recommendations" section listing 3–5 actionable investment ideas.
+- Keep the tone professional, concise, and investor-friendly — as if writing a strategic briefing to a non-expert.
+- Avoid technical jargon, abbreviations, or acronyms. Always spell terms fully (e.g., say "Sustainable Aviation Fuel" instead of "SAF").
+- If the information is insufficient, state it clearly and suggest logical next steps or areas for further research.
 
 ---
 

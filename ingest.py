@@ -5,7 +5,7 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
 from dotenv import load_dotenv
 
-# Load .env OpenAI API key for LLM invocations
+# Load .env OpenAI API key for embeddings
 load_dotenv()
 
 # Path to knowledge base documents

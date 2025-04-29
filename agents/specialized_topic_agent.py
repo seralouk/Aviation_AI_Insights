@@ -23,11 +23,8 @@ Your task is to analyze the provided context and deliver a structured, professio
 - Offers investment-relevant recommendations tailored to the entrepreneur
 
 **Focus the insights and recommendations mainly on the topic asked, but still structure under the standard categories if applicable.**
-
-**Focus your analysis and suggestions under these key thematic areas** (only include those that apply):
-
+** I repeat: Focus the insights and recommendations mainly on the topic asked, and do not provide inisghts for all general themes and categories.**
 - Economics
-- Cargo
 - Regulations
 - Environment & Sustainability
 - Safety

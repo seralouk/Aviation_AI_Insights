@@ -25,7 +25,6 @@ Your task is to analyze the provided context and deliver a structured, professio
 **Focus your analysis and suggestions under these key thematic areas** (only include those that apply):
 
 - Economics
-- Cargo
 - Regulations
 - Environment & Sustainability
 - Safety

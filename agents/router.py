@@ -18,7 +18,7 @@ User query:
 
 Decide if the query is:
 - General about the aviation industry
-- Specific targeted question targeting a specific aspect of the aviation industry. E.g. economics, regulations, safety, sustainability, passenger experience, airline retail, financial services, etc.
+- Specific targeted question targeting a specific aspect of the aviation industry. E.g. cargo, economics, regulations, safety, sustainability, passenger experience, airline retail, financial services, etc.
 
 Return one of these Python strings:
 - "general_insights"

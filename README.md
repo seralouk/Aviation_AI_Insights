@@ -48,5 +48,5 @@ Aviation_AI_Insights/
 ├── README.md
 └── venv/                   # Virtual environment directory, not pushed to git
 
-![Solution_Overview](img/solution.png?raw=true)
 ``
+![Solution_Overview](img/solution.png?raw=true)

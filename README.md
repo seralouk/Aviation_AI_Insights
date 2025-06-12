@@ -47,4 +47,6 @@ Aviation_AI_Insights/
 ├── requirements.txt        # Python dependencies
 ├── README.md
 └── venv/                   # Virtual environment directory, not pushed to git
+
+![Solution_Overview](img/solution.png?raw=true)
 ``
